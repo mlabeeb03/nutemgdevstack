@@ -1,0 +1,35 @@
+version: 2.1
+
+jobs:
+  run-application:
+    docker:
+      - image: docker:19.03.13
+    steps:
+      - checkout
+      - run:
+          name: "Set environment variables"
+          command: |
+            export DEVSTACK_WORKSPACE="$(pwd)"
+            export OPENEDX_RELEASE=nutmeg.master
+      - run:
+          name: "Install Make and Docker Compose"
+          command: |
+            apk add --no-cache make
+            apk add --no-cache docker-compose
+            # Additional commands to install other dependencies if needed
+      - run:
+          name: "Run application"
+          command: |
+            git checkout open-release/nutmeg.master
+            cd devstack
+            make requirements
+            make dev.clone
+            make dev.pull.large-and-slow
+            make dev.provision
+            make dev.up.large-and-slow
+            make dev.stop
+
+workflows:
+  run-application-workflow:
+    jobs:
+      - run-application
