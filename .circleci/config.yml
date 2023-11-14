@@ -32,7 +32,7 @@ jobs:
             #docker-compose --version
             cd devstack
             make requirements
-            make dev.clone
+            make dev.clone.https
             #make dev.pull.large-and-slow
             #make dev.provision
             #make dev.up.large-and-slow
