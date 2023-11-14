@@ -5,11 +5,20 @@ jobs:
     docker:
       - image: docker:19.03.13
     steps:
-      - checkout
+      - checkout:
+          path: /root/project  # Specify the desired path
+      - run:
+          name: "Clone repository and set working directory"
+          command: |
+            cd /root/project
+            git init
+            git remote add origin https://github.com/openedx/devstack.git
+            git fetch --depth 1 origin nutmeg.master
+            git checkout -b nutmeg.master origin/nutmeg.master
       - run:
           name: "Install Dependencies"
           command: |
-            apk add --no-cache git make docker-compose
+            apk add --no-cache make docker-compose
             # Additional commands to install other dependencies if needed
       - run:
           name: "Set environment variables"
@@ -19,7 +28,6 @@ jobs:
       - run:
           name: "Run application"
           command: |
-            git checkout open-release/nutmeg.master
             pwd
             ls
             #cd devstack
@@ -34,4 +42,3 @@ workflows:
   run-application-workflow:
     jobs:
       - run-application
-
