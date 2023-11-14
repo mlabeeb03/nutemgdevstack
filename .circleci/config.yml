@@ -25,19 +25,19 @@ jobs:
       - run:
           name: "Build"
           command: |       
-            python --version
-            pip --version
-            make --version
-            docker --version
-            docker-compose --version
+            #python --version
+            #pip --version
+            #make --version
+            3docker --version
+            #docker-compose --version
             cd devstack
-            #make requirements
-            #make dev.clone
-            #make dev.pull.large-and-slow
-            #make dev.provision
-            #make dev.up.large-and-slow
-            #make studio-shell
-            #pytest cms
+            make requirements
+            make dev.clone
+            make dev.pull.large-and-slow
+            make dev.provision
+            make dev.up.large-and-slow
+            make studio-shell
+            pytest cms
 
 workflows:
   run-application-workflow:
