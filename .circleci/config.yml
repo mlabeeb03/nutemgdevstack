@@ -13,7 +13,7 @@ jobs:
           command: |
             apt-get update && apt-get install -y python3.8 python3.8-distutils
             ln -sf /usr/bin/python3 /usr/bin/python
-            python -m ensurepip
+            python -m get-pip.py
             ln -sf /usr/bin/pip3 /usr/bin/pip
             # Additional commands to install other dependencies if needed
       - run:
