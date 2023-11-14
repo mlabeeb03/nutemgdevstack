@@ -23,22 +23,21 @@ jobs:
             export DEVSTACK_WORKSPACE="$(pwd)"
             export OPENEDX_RELEASE=nutmeg.master
       - run:
-          name: "Check requirements"
+          name: "Build"
           command: |       
-            python --version
-            pip --version
-            make --version
-            docker --version
-            docker-compose --version
-            #cd devstack
-            #make upgrade
-            #make requirements
-            #make dev.clone
-            #make dev.pull.large-and-slow
-            #make dev.provision
-            #make dev.up.large-and-slow
-            #make studio-shell
-            #pytest cms
+            #python --version
+            #pip --version
+            #make --version
+            #docker --version
+            #docker-compose --version
+            cd devstack
+            make requirements
+            make dev.clone
+            make dev.pull.large-and-slow
+            make dev.provision
+            make dev.up.large-and-slow
+            make studio-shell
+            pytest cms
 
 workflows:
   run-application-workflow:
