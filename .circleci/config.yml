@@ -28,7 +28,7 @@ jobs:
             #python --version
             #pip --version
             #make --version
-            3docker --version
+            #docker --version
             #docker-compose --version
             cd devstack
             make requirements
