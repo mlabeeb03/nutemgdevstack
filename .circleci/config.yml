@@ -8,6 +8,11 @@ jobs:
       - checkout:
           path: /root/project  # Specify the desired path
       - run:
+        name: "Install Dependencies"
+        command: |
+          apk add --no-cache make docker-compose
+          # Additional commands to install other dependencies if needed
+      - run:
           name: "Clone repository and set working directory"
           command: |
             cd /root/project
@@ -15,11 +20,6 @@ jobs:
             git remote add origin https://github.com/openedx/devstack.git
             git fetch --depth 1 origin nutmeg.master
             git checkout -b nutmeg.master origin/nutmeg.master
-      - run:
-          name: "Install Dependencies"
-          command: |
-            apk add --no-cache make docker-compose
-            # Additional commands to install other dependencies if needed
       - run:
           name: "Set environment variables"
           command: |
