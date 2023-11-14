@@ -20,13 +20,14 @@ jobs:
           name: "Run application"
           command: |
             git checkout open-release/nutmeg.master
-            cd devstack
-            make requirements
-            make dev.clone
-            make dev.pull.large-and-slow
-            make dev.provision
-            make dev.up.large-and-slow
-            make dev.stop
+            ls
+            #cd devstack
+            #make requirements
+            #make dev.clone
+            #make dev.pull.large-and-slow
+            #make dev.provision
+            #make dev.up.large-and-slow
+            #make dev.stop
 
 workflows:
   run-application-workflow:
