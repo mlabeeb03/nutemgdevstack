@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   run-application:
     docker:
-      - image: ubuntu:20.04
+      - image: docker:latest
     steps:
       - checkout:
           path: /root/project/devstack
@@ -11,7 +11,7 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |
-            apt-get update && apt-get install -y python3.8 python3.8-distutils python3-pip docker docker-compose
+            apt-get update && apt-get install -y python3.8 python3.8-distutils python3-pip docker-compose
             ln -sf /usr/bin/python3 /usr/bin/python
             ln -sf /usr/bin/pip3 /usr/bin/pip
             # Additional commands to install other dependencies if needed
