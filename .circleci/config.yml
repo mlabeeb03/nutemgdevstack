@@ -24,13 +24,7 @@ jobs:
             export OPENEDX_RELEASE=nutmeg.master
       - run:
           name: "Check requirements"
-          command: |
-            #pip --version
-            #python --version
-            #make --version
-            #docker-compose --version
-            #docker --version
-            
+          command: |            
             cd devstack
             make requirements
             #make dev.clone
