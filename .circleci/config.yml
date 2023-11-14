@@ -26,6 +26,7 @@ jobs:
           name: "Check requirements"
           command: |            
             cd devstack
+            make upgrade
             make requirements
             #make dev.clone
             #make dev.pull.large-and-slow
