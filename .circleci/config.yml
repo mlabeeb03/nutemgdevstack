@@ -24,6 +24,8 @@ jobs:
           command: |
             pwd
             ls
+            cd devstack
+            ls
             #make requirements
             #make dev.clone
             #make dev.pull.large-and-slow
