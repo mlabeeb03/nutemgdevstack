@@ -12,8 +12,8 @@ jobs:
           name: "Install Dependencies"
           command: |
             apk add --no-cache make docker-compose
-            #ln -sf /usr/bin/python3.8 /usr/bin/python
-            #ln -sf /usr/bin/pip3.8 /usr/bin/pip
+            ln -sf /usr/bin/python3.8 /usr/bin/python
+            ln -sf /usr/bin/pip3.8 /usr/bin/pip
             # Additional commands to install other dependencies if needed
       - run:
           name: "Set environment variables"
@@ -24,8 +24,8 @@ jobs:
       - run:
           name: "Run application"
           command: |
-            #pip3 --version
-            python3 --version
+            pip --version
+            python --version
             make --version
             docker-compose --version
             docker --version
