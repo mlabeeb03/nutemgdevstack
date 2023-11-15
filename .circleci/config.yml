@@ -33,6 +33,7 @@ jobs:
             #pip --version
             #make --version
             docker --version
+            open -a Docker
             docker run hello-world
             docker-compose --version
             # Your macOS-specific build commands go here
