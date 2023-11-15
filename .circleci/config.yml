@@ -30,6 +30,7 @@ jobs:
             #make --version
             #docker --version
             #docker-compose --version
+            systemctl start docker
             docker info | grep -i 'storage driver'
             #cd devstack
             #make requirements
