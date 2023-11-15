@@ -38,14 +38,14 @@ jobs:
       - run:
           name: "Build"
           command: |
-            pwd
-            ls
-            ls devstack
+            #pwd
+            #ls
+            #ls devstack
             #python --version
             #pip --version
             #make --version
             docker --version
-            docker compose version
+            docker-compose --version
             #sudo service docker start
             #sudo docker run hello-world
             #docker info | grep -i 'storage driver'
