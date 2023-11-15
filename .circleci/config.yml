@@ -40,13 +40,13 @@ jobs:
       - run:
           name: "Build"
           command: |       
-            #python --version
-            #pip --version
-            #make --version
-            #docker --version
-            #docker-compose --version
-            sudo systemctl start docker
-            sudo docker run hello-world
+            python --version
+            pip --version
+            make --version
+            docker --version
+            docker-compose --version
+            #sudo systemctl start docker
+            #sudo docker run hello-world
             docker info | grep -i 'storage driver'
             #cd devstack
             #make requirements
