@@ -3,10 +3,10 @@ version: 2.1
 jobs:
   run-application:
     macos:
-      xcode: 12.5.1  # Specify the Xcode version you need
+      xcode: 14.2.0  # Specify the Xcode version you need
     steps:
       - checkout:
-          path: /root/project/devstack
+          path: ~/project/devstack
           ref: nutmeg.master  # Specify the branch directly
       - run:
           name: "Install Dependencies"
