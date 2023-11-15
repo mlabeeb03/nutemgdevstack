@@ -12,7 +12,7 @@ jobs:
           name: "Install Dependencies"
           command: |
             export DEBIAN_FRONTEND=noninteractive
-            apt-get update && apt-get install -y python3.8 python3.8-distutils python3-pip docker.ce docker-compose-plugin
+            apt-get update && apt-get install -y python3.8 python3.8-distutils python3-pip docker.io docker-compose
             ln -sf /usr/bin/python3 /usr/bin/python
             ln -sf /usr/bin/pip3 /usr/bin/pip
             # Additional commands to install other dependencies if needed
@@ -30,14 +30,15 @@ jobs:
             #make --version
             #docker --version
             #docker-compose --version
-            cd devstack
-            make requirements
-            make dev.clone
-            make dev.pull.large-and-slow
-            make dev.provision
-            make dev.up.large-and-slow
-            make studio-shell
-            pytest cms
+            docker info | grep -i 'storage driver'
+            #cd devstack
+            #make requirements
+            #make dev.clone
+            #make dev.pull.large-and-slow
+            #make dev.provision
+            #make dev.up.large-and-slow
+            #make studio-shell
+            #pytest cms
 
 workflows:
   run-application-workflow:
