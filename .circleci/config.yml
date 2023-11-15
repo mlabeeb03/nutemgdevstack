@@ -11,7 +11,7 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |         
-            apk add --no-cache git make docker-compose python3=3.8.12
+            apk add --no-cache git make docker-compose python3=3.8.10
             ln -sf /usr/bin/python3.8 /usr/bin/python
             python -m ensurepip
             ln -sf /usr/bin/pip3.8 /usr/bin/pip
