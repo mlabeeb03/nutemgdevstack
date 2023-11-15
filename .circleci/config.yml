@@ -32,7 +32,8 @@ jobs:
       - run:
           name: "Build"
           command: |
-            systemctl start docker
+            sudo service docker start
+            #systemctl start docker
             docker run hello-world
             #cd devstack
             #make requirements
