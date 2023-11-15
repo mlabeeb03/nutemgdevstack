@@ -11,7 +11,7 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |         
-            apk add --no-cache git make docker-compose python3 bash
+            apk add --no-cache git make docker-compose python3 bash sudo
             ln -sf /usr/bin/python3 /usr/bin/python
             python -m ensurepip
             ln -sf /usr/bin/pip3 /usr/bin/pip
@@ -30,8 +30,8 @@ jobs:
       - run:
           name: "Build"
           command: |
-            dockerd
-            docker run hello-world
+            sudo dockerd
+            sudo docker run hello-world
             #cd devstack
             #make requirements
             #make dev.clone
