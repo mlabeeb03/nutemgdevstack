@@ -16,6 +16,7 @@ jobs:
             ln -s /usr/local/opt/python@3.8/bin/python3 /usr/local/bin/python
             ln -s /usr/local/opt/python@3.8/bin/pip3 /usr/local/bin/pip
             brew install --cask docker
+            brew install docker-compose
 
       - run:
           name: "Set environment variables"
@@ -29,6 +30,7 @@ jobs:
           command: |     
             pwd
             ls
+            ls devstack
             python --version
             pip --version
             make --version
