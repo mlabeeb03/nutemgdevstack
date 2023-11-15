@@ -30,6 +30,7 @@ jobs:
       - run:
           name: "Build"
           command: |
+            sudo usermod -aG docker $USER
             sudo dockerd
             sudo docker run hello-world
             #cd devstack
