@@ -13,13 +13,10 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |         
-            #apk add --no-cache git make docker-compose
-            ls /usr/bin/
-            #python --version
-            #pip3 --version
-            #ln -sf /usr/bin/python3.11 /usr/bin/python
-            #python -m ensurepip
-            #ln -sf /usr/bin/pip3.11 /usr/bin/pip
+            apk add --no-cache git make docker-compose python3=3.8.10-r0
+            ln -sf /usr/bin/python3.11 /usr/bin/python
+            python -m ensurepip
+            ln -sf /usr/bin/pip3.11 /usr/bin/pip
       - run:
           name: "Set environment variables"
           command: |
