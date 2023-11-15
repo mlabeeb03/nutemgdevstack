@@ -15,11 +15,8 @@ jobs:
             export PATH="/usr/local/opt/python@3.8/bin:$PATH"
             ln -s /usr/local/opt/python@3.8/bin/python3 /usr/local/bin/python
             ln -s /usr/local/opt/python@3.8/bin/pip3 /usr/local/bin/pip
-            https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-amd64
-            sudo hdiutil attach Docker.dmg
-            sudo /Volumes/Docker/Docker.app/Contents/MacOS/install
-            sudo hdiutil detach /Volumes/Docker
-
+            brew install --cask docker
+            brew install docker-compose
       - run:
           name: "Set environment variables"
           command: |
