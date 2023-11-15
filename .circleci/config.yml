@@ -11,6 +11,7 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |
+            export DEBIAN_FRONTEND=noninteractive
             # Add Docker's official GPG key:
             apt-get update
             apt-get install -y sudo ca-certificates curl gnupg 
