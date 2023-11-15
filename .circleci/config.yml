@@ -45,7 +45,7 @@ jobs:
             make --version
             docker --version
             #docker-compose-plugin --version
-            #sudo systemctl start docker
+            sudo systemctl start docker
             #sudo docker run hello-world
             docker info | grep -i 'storage driver'
             #cd devstack
