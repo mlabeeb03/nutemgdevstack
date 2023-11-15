@@ -42,7 +42,8 @@ jobs:
             pip --version
             make --version
             docker --version
-            sudo dockerd
+            sudo usermod -aG docker $USER
+            dockerd
             sudo docker run hello-world
             docker info | grep -i 'storage driver'
             #cd devstack
