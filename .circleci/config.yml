@@ -17,6 +17,12 @@ jobs:
             ln -sf /usr/bin/python3 /usr/bin/python
             python -m ensurepip
             ln -sf /usr/bin/pip3 /usr/bin/pip
+
+            python --version
+            pip --version
+            make --version
+            docker --version
+            docker-compose --version
       - run:
           name: "Set environment variables"
           command: |
@@ -26,25 +32,14 @@ jobs:
       - run:
           name: "Build"
           command: |
-            #pwd
-            #ls
-            #ls devstack
-            python --version
-            pip --version
-            make --version
-            docker --version
-            docker-compose --version
-            #sudo service docker start
-            #sudo docker run hello-world
-            #docker info | grep -i 'storage driver'
-            #cd devstack
-            #make requirements
-            #make dev.clone
-            #make dev.pull.large-and-slow
-            #make dev.provision
-            #make dev.up.large-and-slow
-            #make studio-shell
-            #pytest cms
+            cd devstack
+            make requirements
+            make dev.clone
+            make dev.pull.large-and-slow
+            make dev.provision
+            make dev.up.large-and-slow
+            make studio-shell
+            pytest cms
 
 workflows:
   run-application-workflow:
