@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   run-application:
     macos:
-      xcode: 13.3.1  # Specify the Xcode version you need
+      xcode: 13.4.1  # Specify the Xcode version you need
     steps:
       - checkout:
           path: ~/project/devstack
