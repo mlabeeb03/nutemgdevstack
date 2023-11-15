@@ -4,8 +4,8 @@ jobs:
   run-application:
     docker:
       - image: docker:latest
-      environment:
-          DOCKER_DRIVER: overlay2
+        environment:
+            DOCKER_DRIVER: overlay2
     steps:
       - checkout:
           path: /root/project/devstack
