@@ -38,13 +38,16 @@ jobs:
       - run:
           name: "Build"
           command: |
-            python --version
-            pip --version
-            make --version
-            docker --version
+            pwd
+            ls
+            ls devstack
+            #python --version
+            #pip --version
+            #make --version
+            #docker --version
             #sudo service docker start
             #sudo docker run hello-world
-            docker info | grep -i 'storage driver'
+            #docker info | grep -i 'storage driver'
             #cd devstack
             #make requirements
             #make dev.clone
