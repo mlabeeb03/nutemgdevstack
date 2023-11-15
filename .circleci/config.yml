@@ -4,6 +4,8 @@ jobs:
   run-application:
     docker:
       - image: docker:latest
+      environment:
+          DOCKER_DRIVER: overlay2
     steps:
       - checkout:
           path: /root/project/devstack
@@ -11,7 +13,7 @@ jobs:
       - run:
           name: "Install Dependencies"
           command: |         
-            apk add --no-cache git make docker-compose python3=3.8.10-r1
+            apk add --no-cache git make docker-compose
             ln -sf /usr/bin/python3.8 /usr/bin/python
             python -m ensurepip
             ln -sf /usr/bin/pip3.8 /usr/bin/pip
