@@ -14,7 +14,7 @@ jobs:
             export DEBIAN_FRONTEND=noninteractive
             # Add Docker's official GPG key:
             apt-get update
-            apt-get install -y sudo ca-certificates curl gnupg 
+            apt-get install -y sudo systemctl ca-certificates curl gnupg 
             install -m 0755 -d /etc/apt/keyrings
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
             chmod a+r /etc/apt/keyrings/docker.gpg
@@ -45,6 +45,7 @@ jobs:
             #make --version
             #docker --version
             #docker-compose --version
+            sudo systemctl start docker
             sudo docker run hello-world
             docker info | grep -i 'storage driver'
             #cd devstack
