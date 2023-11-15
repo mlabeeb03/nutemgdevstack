@@ -45,11 +45,9 @@ jobs:
             make --version
             docker --version
             #docker-compose-plugin --version
-            sudo systemctl unmask docker.service
-            sudo systemctl unmask docker.socket
-            sudo systemctl start docker.service
-            #sudo docker run hello-world
-            docker info | grep -i 'storage driver'
+            
+            sudo docker run hello-world
+            #docker info | grep -i 'storage driver'
             #cd devstack
             #make requirements
             #make dev.clone
