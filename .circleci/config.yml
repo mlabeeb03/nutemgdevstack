@@ -16,7 +16,7 @@ jobs:
       - run:
           name: "Set environment variables"
           command: |
-            cd /root/project/devstack
+            cd ~/project/devstack
             export DEVSTACK_WORKSPACE="$(pwd)"
             export OPENEDX_RELEASE=nutmeg.master
 
