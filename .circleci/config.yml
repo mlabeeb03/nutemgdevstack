@@ -29,6 +29,12 @@ jobs:
             apt-get install -y python3.8 python3.8-distutils python3-pip
             ln -sf /usr/bin/python3 /usr/bin/python
             ln -sf /usr/bin/pip3 /usr/bin/pip
+
+            python --version
+            pip --version
+            make --version
+            docker --version
+            docker compose version
       - run:
           name: "Set environment variables"
           command: |
@@ -38,18 +44,7 @@ jobs:
       - run:
           name: "Build"
           command: |
-            pwd
-            ls
-            ls devstack
-            python --version
-            pip --version
-            make --version
-            docker --version
-            docker compose version
-            #sudo service docker start
-            #sudo docker run hello-world
-            #docker info | grep -i 'storage driver'
-            #cd devstack
+            cd devstack
             #make requirements
             #make dev.clone
             #make dev.pull.large-and-slow
