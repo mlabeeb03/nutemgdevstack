@@ -1,18 +1,58 @@
-version: 2.1
-
-jobs:
-  run-hello-world:
+version: 2.1jobs:
+  run-application:
     docker:
-      - image: docker:20.10.10
+      - image: ubuntu:20.04
     steps:
-      - checkout
+      - checkout:
+          path: /root/project/devstack
+          ref: nutmeg.master  # Specify the branch directly
       - run:
-          name: Run Docker Hello World
+          name: "Install Dependencies"
           command: |
-            docker run hello-world
-
-workflows:
-  version: 2
-  main:
+            export DEBIAN_FRONTEND=noninteractive
+            # Add Docker's official GPG key:
+            apt-get update
+            apt-get install -y sudo ca-certificates curl gnupg
+            install -m 0755 -d /etc/apt/keyrings
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+            chmod a+r /etc/apt/keyrings/docker.gpg            # Add the repository to Apt sources:
+            echo \
+              "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+              $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+              tee /etc/apt/sources.list.d/docker.list > /dev/null
+            apt-get update
+            apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+            apt-get install -y python3.8 python3.8-distutils python3-pip
+            ln -sf /usr/bin/python3 /usr/bin/python
+            ln -sf /usr/bin/pip3 /usr/bin/pip
+      - run:
+          name: "Set environment variables"
+          command: |
+            cd /root/project/devstack
+            export DEVSTACK_WORKSPACE="$(pwd)"
+            export OPENEDX_RELEASE=nutmeg.master
+      - run:
+          name: "Build"
+          command: |
+            pwd
+            ls
+            ls devstack
+            #python --version
+            #pip --version
+            #make --version
+            docker --version
+            docker compose version
+            #sudo service docker start
+            #sudo docker run hello-world
+            #docker info | grep -i 'storage driver'
+            #cd devstack
+            #make requirements
+            #make dev.clone
+            #make dev.pull.large-and-slow
+            #make dev.provision
+            #make dev.up.large-and-slow
+            #make studio-shell
+            #pytest cmsworkflows:
+  run-application-workflow:
     jobs:
-      - run-hello-world
+      - run-application
