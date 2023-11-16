@@ -1,22 +1,46 @@
 version: 2.1
 
-executors:
-  adg-edx-executor:
-    docker:
-      - image: cimg/python:3.5-node
-
 jobs:
-  run-hello-world:
-    executor: adg-edx-executor
+  run-application:
+    docker:
+      - image: ubuntu:20.04
     steps:
-      - checkout
+      - checkout:
+          path: /root/project/devstack
+          ref: nutmeg.master  # Specify the branch directly
       - run:
-          name: Run Docker Hello World
+          name: "Install Dependencies"
           command: |
+            export DEBIAN_FRONTEND=noninteractive
+            apt-get update && apt-get install -y python3.8 python3.8-distutils python3-pip docker.io docker-compose
+            ln -sf /usr/bin/python3 /usr/bin/python
+            ln -sf /usr/bin/pip3 /usr/bin/pip
+            # Additional commands to install other dependencies if needed
+      - run:
+          name: "Set environment variables"
+          command: |
+            cd /root/project/devstack
+            export DEVSTACK_WORKSPACE="$(pwd)"
+            export OPENEDX_RELEASE=nutmeg.master
+      - run:
+          name: "Build"
+          command: |       
+            python --version
+            pip --version
+            make --version
+            docker --version
+            docker-compose --version
+            cd devstack
             docker run hello-world
+            #make requirements
+            #make dev.clone
+            #make dev.pull.large-and-slow
+            #make dev.provision
+            #make dev.up.large-and-slow
+            #make studio-shell
+            #pytest cms
 
 workflows:
-  version: 2
-  main:
+  run-application-workflow:
     jobs:
-      - run-hello-world
+      - run-application
