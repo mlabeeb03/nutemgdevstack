@@ -46,15 +46,15 @@ jobs:
       - run:
           name: "Build"
           command: |
-            docker run hello-world
-            #cd devstack
-            #make requirements
-            #make dev.clone
-            #make dev.pull.large-and-slow
-            #make dev.provision
-            #make dev.up.large-and-slow
-            #make studio-shell
-            #pytest cms
+            #docker run hello-world
+            cd devstack
+            make requirements
+            make dev.clone
+            make dev.pull.large-and-slow
+            make dev.provision
+            make dev.up.large-and-slow
+            make studio-shell
+            pytest cms
 
 workflows:
   run-application-workflow:
