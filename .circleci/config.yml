@@ -8,8 +8,8 @@ jobs:
       - checkout:
           path: /root/project/devstack
           ref: nutmeg.master  # Specify the branch directly
-          - setup_remote_docker:
-            docker_layer_caching: true
+      - setup_remote_docker:
+        docker_layer_caching: true
       - run:
           name: "Install Dependencies"
           command: |
