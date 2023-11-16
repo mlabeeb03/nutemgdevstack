@@ -1,46 +1,21 @@
 version: 2.1
 
-jobs:
-  run-application:
+executors:
+  adg-edx-executor:
     docker:
-      - image: docker:latest
+      - image: cimg/python:3.5-node
+
+commands:
+  run-hello-world:
     steps:
-      - checkout:
-          path: /root/project/devstack
-          ref: nutmeg.master  # Specify the branch directly
+      - checkout
       - run:
-          name: "Install Dependencies"
-          command: |         
-            apk add --no-cache git make docker-compose python3 bash sudo 
-            ln -sf /usr/bin/python3 /usr/bin/python
-            python -m ensurepip
-            ln -sf /usr/bin/pip3 /usr/bin/pip
-
-            python --version
-            pip --version
-            make --version
-            docker --version
-            docker-compose --version
-      - run:
-          name: "Set environment variables"
+          name: Run Docker Hello World
           command: |
-            cd /root/project/devstack
-            export DEVSTACK_WORKSPACE="$(pwd)"
-            export OPENEDX_RELEASE=nutmeg.master
-      - run:
-          name: "Build"
-          command: |
-            sudo dockerd
-            #cd devstack
-            #make requirements
-            #make dev.clone
-            #make dev.pull.large-and-slow
-            #make dev.provision
-            #make dev.up.large-and-slow
-            #make studio-shell
-            #pytest cms
+            docker run hello-world
 
-workflows:
-  run-application-workflow:
-    jobs:
-      - run-application
+jobs:
+  run-hello-world:
+    executor: adg-edx-executor
+    steps:
+      - run-hello-world
