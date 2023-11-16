@@ -5,8 +5,9 @@ executors:
     docker:
       - image: cimg/python:3.5-node
 
-commands:
+jobs:
   run-hello-world:
+    executor: adg-edx-executor
     steps:
       - checkout
       - run:
@@ -14,8 +15,8 @@ commands:
           command: |
             docker run hello-world
 
-jobs:
-  run-hello-world:
-    executor: adg-edx-executor
-    steps:
+workflows:
+  version: 2
+  main:
+    jobs:
       - run-hello-world
