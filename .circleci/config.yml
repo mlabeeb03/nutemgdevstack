@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   run-hello-world:
     docker:
-      - image: cimg/docker:20.10.10
+      - image: docker:20.10.10
     steps:
       - checkout
       - run:
