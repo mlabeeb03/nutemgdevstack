@@ -46,19 +46,16 @@ jobs:
       - run:
           name: "Build"
           command: |
-            ls devstack
-            echo "-------------------------------"
             cd devstack
             git checkout open-release/nutmeg.master
             make dev.checkout
-            ls
-            # make requirements
-            # make dev.clone
-            # make dev.pull.large-and-slow
-            # make dev.provision
-            # make dev.up.large-and-slow
-            # make studio-shell
-            # pytest cms
+            make requirements
+            make dev.clone
+            make dev.pull.large-and-slow
+            make dev.provision
+            make dev.up.large-and-slow
+            make studio-shell
+            pytest cms
 
 workflows:
   run-application-workflow:
