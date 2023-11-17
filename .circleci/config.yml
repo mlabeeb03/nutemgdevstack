@@ -6,7 +6,7 @@ jobs:
       - image: ubuntu:20.04
     steps:
       - checkout:
-          path: /root/project/devstack
+          #path: /root/project/devstack
           ref: nutmeg.master  # Specify the branch directly
       - setup_remote_docker:
           docker_layer_caching: true
@@ -46,11 +46,14 @@ jobs:
       - run:
           name: "Build"
           command: |
+            pwd
+            ls
             cd devstack
+            ls devstack
             # make requirements
-            make dev.clone
-            make dev.pull.large-and-slow
-            make dev.provision
+            # make dev.clone
+            # make dev.pull.large-and-slow
+            # make dev.provision
             # make dev.up.large-and-slow
             # make studio-shell
             # pytest cms
