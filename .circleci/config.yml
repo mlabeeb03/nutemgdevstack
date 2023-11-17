@@ -49,6 +49,7 @@ jobs:
             ls devstack
             echo "-------------------------------"
             cd devstack
+            git checkout open-release/nutmeg.master
             make dev.checkout
             ls
             # make requirements
