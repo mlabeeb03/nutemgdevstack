@@ -20,10 +20,11 @@ jobs:
       - run:
           name: "Build"
           command: |
-            pwd
-            ls
-            cd devstack
             ls devstack
+            echo "-------------------------------"
+            cd devstack
+            make dev.checkout
+            ls
             # make requirements
             # make dev.clone
             # make dev.pull.large-and-slow
