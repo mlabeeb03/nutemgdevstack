@@ -42,13 +42,13 @@ jobs:
           command: |
             cd /root/project/devstack
             export DEVSTACK_WORKSPACE="$(pwd)"
-            export OPENEDX_RELEASE=nutmeg.master
+            #export OPENEDX_RELEASE=nutmeg.master
       - run:
           name: "Build"
           command: |
             cd devstack
-            git checkout open-release/nutmeg.master
-            make dev.checkout
+            #git checkout open-release/nutmeg.master
+            #make dev.checkout
             make requirements
             make dev.clone
             make dev.pull.large-and-slow
