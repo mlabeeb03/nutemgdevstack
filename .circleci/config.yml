@@ -58,7 +58,8 @@ jobs:
             make dev.up.large-and-slow
             # make studio-shell
             # pytest cms
-            expect -c 'spawn make studio-shell; expect ".*\$ "; send "pytest cms/djangoapps/contentstore/tests/test_tasks.py\r"; interact'
+            # expect -c 'spawn make studio-shell; expect ".*\$ "; send "pytest cms/djangoapps/contentstore/tests/test_tasks.p\r"; interact'
+            expect -c 'spawn make studio-shell; expect ".*\$ "; send "ls\r"; send "ls cms\r"; send "ls cms/djangoapps/contentstore/tests\r"; send "exit\r"; interact'
           
 workflows:
   run-application-workflow:
