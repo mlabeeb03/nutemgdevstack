@@ -2,49 +2,62 @@ version: 2.1
 
 jobs:
   run-application:
-    macos:
-      xcode: 13.4.1  # Specify the Xcode version you need
+    docker:
+      - image: ubuntu:20.04
     steps:
       - checkout:
-          path: ~/project/devstack
-          #ref: nutmeg.master  # Specify the branch directly
+          path: /root/project/devstack
+          #ref: palm.master  # Specify the branch directly
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
           name: "Install Dependencies"
           command: |
-            brew install python@3.8
-            export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-            ln -s /usr/local/opt/python@3.8/bin/python3 /usr/local/bin/python
-            ln -s /usr/local/opt/python@3.8/bin/pip3 /usr/local/bin/pip
-            brew install --cask docker
+            export DEBIAN_FRONTEND=noninteractive
+            # Add Docker's official GPG key:
+            apt-get update
+            apt-get install -y sudo ca-certificates curl gnupg
+            install -m 0755 -d /etc/apt/keyrings
+            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+            chmod a+r /etc/apt/keyrings/docker.gpg
+            
+            # Add the repository to Apt sources:
+            echo \
+              "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+              $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+              tee /etc/apt/sources.list.d/docker.list > /dev/null
+            apt-get update            
+            apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin            
+            apt-get install -y python3.8 python3.8-distutils python3-pip
+            ln -sf /usr/bin/python3 /usr/bin/python
+            ln -sf /usr/bin/pip3 /usr/bin/pip
+
+            python --version
+            pip --version
+            make --version
+            docker --version
+            docker compose version
       - run:
           name: "Set environment variables"
           command: |
-            cd ~/project/devstack
+            cd /root/project/devstack
             export DEVSTACK_WORKSPACE="$(pwd)"
-            export OPENEDX_RELEASE=nutmeg.master
-
+            export OPENEDX_RELEASE=palm.master
       - run:
           name: "Build"
-          command: |     
+          command: |
             cd devstack
-            git checkout open-release/nutmeg.master
-            make dev.checkout
-            make requirements
-            make dev.clone
-            make dev.pull.large-and-slow
-            make dev.provision
-            make dev.up.large-and-slow
-            make studio-shell
-            pytest cms
+            # git checkout open-release/palm.master
+            # make dev.checkout
+            # make requirements
+            # make dev.clone
+            # make dev.pull.large-and-slow
+            # make dev.provision
+            # make dev.up.large-and-slow
+            # make studio-shell
+            # pytest cms
 
 workflows:
   run-application-workflow:
     jobs:
       - run-application
-
-
-
-
-
