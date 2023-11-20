@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout:
           path: /root/project/devstack
-          #ref: palm.master  # Specify the branch directly
+          #ref: nutmeg.master  # Specify the branch directly
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -44,12 +44,12 @@ jobs:
           command: |
             cd /root/project/devstack
             export DEVSTACK_WORKSPACE="$(pwd)"
-            export OPENEDX_RELEASE=palm.master
+            export OPENEDX_RELEASE=nutmeg.master
       - run:
           name: "Build"
           command: |
             cd devstack
-            git checkout open-release/palm.master
+            git checkout open-release/nutmeg.master
             make dev.checkout
             make requirements
             make dev.clone
