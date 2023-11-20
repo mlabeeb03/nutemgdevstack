@@ -49,15 +49,16 @@ jobs:
           name: "Build"
           command: |
             cd devstack
-            # git checkout open-release/palm.master
-            # make dev.checkout
-            # make requirements
-            # make dev.clone
-            # make dev.pull.large-and-slow
-            # make dev.provision || true
-            # make dev.up.large-and-slow
+            git checkout open-release/palm.master
+            make dev.checkout
+            make requirements
+            make dev.clone
+            make dev.pull.large-and-slow
+            make dev.provision || true
+            make dev.up.large-and-slow
             # make studio-shell
             # pytest cms
+            expect -c 'spawn make studio-shell; expect ".*\$ "; send "pytest cms/djangoapps/contentstore/tests/test_tasks.py\r"; interact'
           
 workflows:
   run-application-workflow:
