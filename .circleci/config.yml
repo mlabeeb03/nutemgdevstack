@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout:
           path: ~/project/devstack
-          ref: nutmeg.master  # Specify the branch directly
+          #ref: nutmeg.master  # Specify the branch directly
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
@@ -29,7 +29,7 @@ jobs:
           name: "Build"
           command: |     
             cd devstack
-            git checkout open-release/palm.master
+            git checkout open-release/nutmeg.master
             make dev.checkout
             make requirements
             make dev.clone
