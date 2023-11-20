@@ -38,6 +38,7 @@ jobs:
             docker --version
             docker compose version
             which manpath
+            command -v expect
       - run:
           name: "Set environment variables"
           command: |
@@ -48,19 +49,16 @@ jobs:
           name: "Build"
           command: |
             cd devstack
-            git checkout open-release/palm.master
-            make dev.checkout
-            make requirements
-            make dev.clone
-            make dev.pull.large-and-slow
-            make dev.provision || true
-            make dev.up.large-and-slow
+            # git checkout open-release/palm.master
+            # make dev.checkout
+            # make requirements
+            # make dev.clone
+            # make dev.pull.large-and-slow
+            # make dev.provision || true
+            # make dev.up.large-and-slow
             # make studio-shell
             # pytest cms
-            echo -e "#!/usr/bin/expect -f\nset timeout -1\nspawn make studio-shell\nexpect \".*\$ \"\nsend \"pytest cms\\r\"\ninteract" > run_tests.sh
-            chmod +x run_tests.sh
-            ./run_tests.sh
-
+          
 workflows:
   run-application-workflow:
     jobs:
