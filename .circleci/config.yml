@@ -56,10 +56,15 @@ jobs:
             make dev.pull.large-and-slow
             make dev.provision || true
             make dev.up.large-and-slow
+            pwd
+            cd ..
+            ls
+            cd edx-platform
+            ls
             # make studio-shell
             # pytest cms
             # expect -c 'spawn make studio-shell; expect ".*\$ "; send "pytest cms/djangoapps/contentstore/tests/test_tasks.p\r"; interact'
-            expect -c 'spawn make studio-shell; expect ".*\$ "; send "ls\r"; send "ls cms\r"; send "ls cms/djangoapps/contentstore/tests\r"; send "exit\r"; interact'
+            # expect -c 'spawn make studio-shell; expect ".*\$ "; send "ls\r"; send "ls cms\r"; send "ls cms/djangoapps/contentstore/tests\r"; send "exit\r"; interact'
           
 workflows:
   run-application-workflow:
